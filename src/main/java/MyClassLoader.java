@@ -11,7 +11,7 @@ public class MyClassLoader extends ClassLoader{
             InputStream inputStream = new BufferedInputStream( new FileInputStream(filePath));
             byte[] b = new byte[(int)filePath.length()];
             inputStream.read(b);
-
+            // byte to object
             return defineClass(name, b, 0, b.length);
 
         } catch (Exception e) {

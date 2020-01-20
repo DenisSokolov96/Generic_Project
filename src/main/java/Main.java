@@ -1,6 +1,8 @@
+import org.apache.log4j.Logger;
 public class Main {
 
-    static StringBuilder str = new StringBuilder();
+    public static StringBuilder str = new StringBuilder();
+    public static final Logger log = Logger.getLogger(Main.class);
 
     public static void main(String[] args) {
 
@@ -16,19 +18,21 @@ public class Main {
             instanceOfClassGen.setA(123.123);
             str.append(instanceOfClassGen.getA()+"\n");
 
-            instanceOfClassGen.setA("Hello world!"+"\n");
-            str.append(instanceOfClassGen.getA());
-            System.out.println(str);
+            instanceOfClassGen.setA("Hello world!");
+            str.append(instanceOfClassGen.getA()+"\n");
+
+            log.info("OK");
         }
         catch (ClassNotFoundException e){
-            System.out.println(e.getMessage());
+            log.error(e.getMessage());
         }
         catch (IllegalAccessException e) {
-            System.out.println(e.getMessage());
+            log.error(e.getMessage());
         }
         catch (InstantiationException e) {
-            System.out.println(e.getMessage());
+            log.error(e.getMessage());
         }
+        System.out.println(str);
 
     }
 }
