@@ -1,4 +1,8 @@
 import org.apache.log4j.Logger;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
 
     public static StringBuilder str = new StringBuilder();
@@ -21,6 +25,17 @@ public class Main {
             instanceOfClassGen.setA("Hello world!");
             str.append(instanceOfClassGen.getA()+"\n");
 
+            /******************/
+
+            List<Integer> intList = new ArrayList<Integer>();
+            intList.add(1);
+            intList.add(2);
+            str.append("Список до обработки дженерик-методом: " + intList+"\n");
+            instanceOfClassGen.fill(intList, "Hello, Denis!");
+            str.append("Список после обработки дженерик-методом: "
+                    + intList+"\n");
+
+            /********************/
             log.info("OK");
         }
         catch (ClassNotFoundException e){
