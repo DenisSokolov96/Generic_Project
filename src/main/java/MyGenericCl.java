@@ -1,7 +1,8 @@
-import java.util.List;
+import org.apache.log4j.Logger;
 
 public class MyGenericCl<MyType> implements IMyGenericCl<MyType> {
 
+    public static final Logger log = Logger.getLogger(MyGenericCl.class);
     public MyType t;
     public MyType getA() {
         return t;
@@ -10,9 +11,10 @@ public class MyGenericCl<MyType> implements IMyGenericCl<MyType> {
         this.t = t;
     }
 
-    public MyType fill(MyType t) {
+    public <E> E getE(E e) {
 
 
-        return t;
+        log.info(e + " : " + e.getClass());
+        return e;
     }
 }

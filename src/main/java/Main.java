@@ -36,8 +36,10 @@ public class Main {
 
             str.append("Generic Method"+"\n");
 
-            double a = myGenericCl1.fill(123);
-            str.append(a+"\n");
+            int a = myGenericCl1.getE(123);
+            String s = myGenericCl1.getE("hello");
+            str.append(a + "\n");
+            str.append(s + "\n");
 
 
             /********************/
