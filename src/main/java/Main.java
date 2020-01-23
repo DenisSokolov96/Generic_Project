@@ -1,4 +1,5 @@
 import org.apache.log4j.Logger;
+import org.omg.CORBA.INTERNAL;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,29 +12,33 @@ public class Main {
     public static void main(String[] args) {
 
         MyClassLoader loader = new MyClassLoader();
+        MyClassLoader loader1 = new MyClassLoader();
 
         try {
-            Class classGen = loader.findClass("MyGenericCl");
-            IMyGenericCl instanceOfClassGen = (IMyGenericCl) classGen.newInstance();
+            str.append("Generic Class"+"\n");
 
-            instanceOfClassGen.setA(123);
-            str.append(instanceOfClassGen.getA()+"\n");
+            Class classGen1 = loader.findClass("MyGenericCl");
+            Class classGen2 = loader1.findClass("MyGenericCl");
 
-            instanceOfClassGen.setA(123.123);
-            str.append(instanceOfClassGen.getA()+"\n");
+            IMyGenericCl<Integer> myGenericCl1 = (IMyGenericCl) classGen1.newInstance();
+            myGenericCl1.setA(123);
 
-            instanceOfClassGen.setA("Hello world!");
-            str.append(instanceOfClassGen.getA()+"\n");
+            IMyGenericCl<Double> myGenericCl2 = (IMyGenericCl) classGen2.newInstance();
+            myGenericCl2.setA(123.123);
+
+            int res1 = myGenericCl1.getA();
+            double res2 = myGenericCl2.getA();
+
+            str.append(res1 + "\n");
+            str.append(res2 + "\n");
 
             /******************/
 
-            List<Integer> intList = new ArrayList<Integer>();
-            intList.add(1);
-            intList.add(2);
-            str.append("Список до обработки дженерик-методом: " + intList+"\n");
-            instanceOfClassGen.fill(intList, "Hello, Denis!");
-            str.append("Список после обработки дженерик-методом: "
-                    + intList+"\n");
+            str.append("Generic Method"+"\n");
+
+            double a = myGenericCl1.fill(123);
+            str.append(a+"\n");
+
 
             /********************/
             log.info("OK");
